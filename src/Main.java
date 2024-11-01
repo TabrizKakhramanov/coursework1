@@ -12,11 +12,6 @@ public class Main {
         employees[8]= new Employee("Иван Иванович Иванов8", 150_000, 5);
         employees[9]= new Employee("Иван Иванович Иванов9", 60_000, 2);
 
-
-
-
-
-
         printAllEmployees(employees);
         System.out.println("Общая зарплата: "+summarySalary(employees));
         System.out.println("Минимальная зарплата: "+minSalary(employees));
@@ -66,5 +61,84 @@ public class Main {
             System.out.println(employees[i].getName());
         }
     }
+    public static void salaryChange(Employee[] employees, int percent){
+        for (int i = 0; i < employees.length; i++) {
+            int newSalary = employees[i].getSalary()*percent/100;
+            employees[i].setSalary(newSalary);
+        }
+    }
+
+    // Повышенная сложность
+
+    public static int minDepartmentSalary (Employee[] employees, int department){
+        int min = Integer.MAX_VALUE;
+        for (int i = 0; i < employees.length; i++) {
+            if ((employees[i].getDepartment()==department)&&employees[i].getSalary()<min){
+                min = employees[i].getSalary();
+            }
+        }
+        return min;
+    }
+    public static int maxDepartmentSalary (Employee[] employees, int department){
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < employees.length; i++) {
+            if ((employees[i].getDepartment()==department)&&employees[i].getSalary()>max){
+                max = employees[i].getSalary();
+            }
+        }
+        return max;
+    }
+    public static int sumDepartmentSalary (Employee[] employees, int department){
+        int sum = 0;
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].getDepartment()==department){
+                sum+=employees[i].getSalary();
+            }
+        }
+        return sum;
+    }
+    public static int averageDepartmentSalary (Employee[] employees, int department){
+        int element=0;
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].getDepartment()==department){
+                element++;
+            }
+        }
+        return sumDepartmentSalary(employees,department)/element;
+    }
+    public static void averageDepartmentSalary (Employee[] employees, int department, int percent){
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].getDepartment()==department){
+                employees[i].setSalary(employees[i].getSalary()*percent/100);
+            }
+        }
+    }
+    public static void printAllDepartmentInfo(Employee[] employees, int department){
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].getDepartment()==department){
+                System.out.println("ID сотрудника: "+employees[i].id+"ФИО: "+employees[i].getName()+" Зарплата: "+employees[i].getSalary()+".");
+            }
+        }
+    }
+
+    public static void printAllEmployeeSalaryBelow (Employee[] employees, int salary){
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].getSalary()<salary){
+                System.out.println("ID сотрудника: "+employees[i].id+"ФИО: "+employees[i].getName()+" Зарплата: "+employees[i].getSalary()+".");
+            }
+        }
+    }
+    public static void printAllEmployeeSalaryHigher (Employee[] employees, int salary){
+        for (int i = 0; i < employees.length; i++) {
+            if (employees[i].getSalary()>salary){
+                System.out.println("ID сотрудника: "+employees[i].id+"ФИО: "+employees[i].getName()+" Зарплата: "+employees[i].getSalary()+".");
+            }
+        }
+    }
+
+
+
+
+
 
 }
