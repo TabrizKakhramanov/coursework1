@@ -68,6 +68,7 @@ public class Main {
         }
     }
 
+
     // Повышенная сложность
 
     public static int minDepartmentSalary (Employee[] employees, int department){
