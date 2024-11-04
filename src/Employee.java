@@ -2,16 +2,17 @@ import java.util.Arrays;
 import java.util.Objects;
 
 public class Employee {
-    static int id;
+    private int id;
     private String name;
     private int salary;
     private int department;
+    private static int idCount;
 
     public Employee(String name, int salary, int department) {
         this.name = name;
         this.salary = salary;
-        this.department= department;
-        id++;
+        this.department = department;
+        this.id = idCount++;
     }
 
     public String getName() {
@@ -22,7 +23,7 @@ public class Employee {
         return salary;
     }
 
-    public static int getId() {
+    public int getId() {
         return id;
     }
 
